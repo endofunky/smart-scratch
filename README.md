@@ -1,4 +1,4 @@
-# smart-scratch
+# smart-scratch 🤔
 
 Smart major-mode specific scratch buffers for GNU Emacs.
 
