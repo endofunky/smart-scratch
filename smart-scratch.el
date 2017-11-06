@@ -49,15 +49,18 @@
   :type '(string)
   :group 'diff)
 
-(defvar smart-scratch--modes '((emacs-lisp-mode . lisp-interaction-mode)
-                               (inferior-emacs-lisp-mode . lisp-interaction-mode)
-                               (inf-ruby-mode . ruby-mode)))
+(defvar smart-scratch--modes
+  '((emacs-lisp-mode . lisp-interaction-mode)
+    (inferior-emacs-lisp-mode . lisp-interaction-mode)
+    (inf-ruby-mode . ruby-mode)))
 
 (defvar smart-scratch--prev-buffers (make-hash-table :weakness 'value))
 
 (defun smart-scratch--major-mode (&optional buffer)
   "Returns the major mode for the given buffer or the current buffer."
-  (let ((mode (buffer-local-value 'major-mode (if buffer buffer (current-buffer)))))
+  (let ((mode (buffer-local-value 'major-mode (if buffer
+                                                  buffer
+                                                (current-buffer)))))
     (or (cdr (assoc mode smart-scratch--modes))
         mode)))
 
@@ -65,7 +68,8 @@
   "Returns t if the main scratch buffer corresponds to the current major-mode."
   (if-let* ((scratch-buffer (get-buffer "*scratch*")))
       (and (eq initial-major-mode (smart-scratch--major-mode))
-           (eq initial-major-mode (smart-scratch--major-mode scratch-buffer)))))
+           (eq initial-major-mode (smart-scratch--major-mode
+                                   scratch-buffer)))))
 
 (defun smart-scratch--special-buffer-p ()
   "Returns t if the current buffer is derived from special-mode"
@@ -80,11 +84,16 @@
   "Returns the scratch buffer name for the current major-mode."
   (if (smart-scratch--initial-mm-p)
       "*scratch*"
-    (let ((name (replace-regexp-in-string "-mode\\'" "" (smart-scratch--major-mode-name))))
-      (concat "*" smart-scratch-buffer-prefix name smart-scratch-buffer-suffix "*"))))
+    (let ((name (replace-regexp-in-string "-mode\\'" ""
+                                          (smart-scratch--major-mode-name))))
+      (concat "*"
+              smart-scratch-buffer-prefix
+              name
+              smart-scratch-buffer-suffix
+              "*"))))
 
 (defun smart-scratch--switch-to ()
-  "Switches to the scratch buffer for the given major mode"
+  "Switches to the scratch buffer for the given major mode."
   (let ((buffer (get-buffer-create (smart-scratch--name)))
         (mode-str (smart-scratch--major-mode-name)))
     (puthash mode-str (current-buffer) smart-scratch--prev-buffers)
@@ -92,7 +101,8 @@
     (funcall (intern mode-str))))
 
 (defun smart-scratch--switch-back ()
-  "Switches back to the previous buffer for the current scratch buffer's major mode"
+  "Switches back to the previous buffer for the current scratch buffer's
+major mode."
   (let* ((mode-str (smart-scratch--major-mode-name))
          (prev-buffer (gethash mode-str smart-scratch--prev-buffers)))
     (if (buffer-live-p prev-buffer)
@@ -101,7 +111,8 @@
     (remhash mode-str smart-scratch--prev-buffers)))
 
 (defun smart-scratch-toggle ()
-  "Toggle between the major-mode specific scratch buffer and the current buffer."
+  "Toggle between the major-mode specific scratch buffer and the current
+buffer."
   (interactive)
   (cond ((smart-scratch--special-buffer-p)
          (message "No scratch for current buffer."))
