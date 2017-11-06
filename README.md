@@ -5,7 +5,10 @@ Smart major-mode specific scratch buffers for GNU Emacs.
 Current mode-specific scratch buffer extensions didn't really do what I wanted
 them to do, so I wrote my own.
 
-Features:
+Adds a `smart-scratch-toggle` interactive function to toggle between a scratch
+buffer for the current buffer's major mode and the current buffer.
+
+Fancy features:
 
 - Major-mode hierachy aware. For example, uses `lisp-interaction-mode` for all
   Emacs Lisp modes.
