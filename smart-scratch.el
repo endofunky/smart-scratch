@@ -63,7 +63,7 @@
 (defvar smart-scratch--prev-buffers (make-hash-table :weakness 'value))
 
 (defun smart-scratch--major-mode (&optional buffer)
-  "Return the major mode for the given `BUFFER' or the current buffer."
+  "Return the infered `major-mode' for the given or current buffer."
   (let ((mode (buffer-local-value 'major-mode (if buffer
                                                   buffer
                                                 (current-buffer)))))
