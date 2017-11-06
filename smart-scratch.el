@@ -50,8 +50,8 @@
   :group 'diff)
 
 (defvar smart-scratch--modes '((emacs-lisp-mode . lisp-interaction-mode)
-                           (inferior-emacs-lisp-mode . lisp-interaction-mode)
-                           (inf-ruby-mode . ruby-mode)))
+                               (inferior-emacs-lisp-mode . lisp-interaction-mode)
+                               (inf-ruby-mode . ruby-mode)))
 
 (defvar smart-scratch--prev-buffers (make-hash-table :weakness 'value))
 
