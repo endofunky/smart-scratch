@@ -77,10 +77,11 @@
            (eq initial-major-mode (smart-scratch--major-mode
                                    scratch-buffer)))))
 
-(defun smart-scratch--special-buffer-p ()
-  "Return t if the current buffer is derived from `special-mode'."
-  (or (derived-mode-p 'special-mode)
-      (derived-mode-p 'dired-mode)))
+(defun smart-scratch--ignored-buffer-p ()
+  "Return t if the current buffer is ignored by smart-scratch."
+  (and (not (cdr (assoc (smart-scratch--major-mode) smart-scratch--modes)))
+       (or (derived-mode-p 'special-mode)
+           (derived-mode-p 'dired-mode))))
 
 (defun smart-scratch--major-mode-name ()
   "Return the name of the major mode for the current buffer."
@@ -116,7 +117,7 @@
 (defun smart-scratch-toggle ()
   "Toggle between the `major-mode' scratch buffer and the current buffer."
   (interactive)
-  (cond ((smart-scratch--special-buffer-p)
+  (cond ((smart-scratch--ignored-buffer-p)
          (message "No scratch for current buffer."))
         ((equal (smart-scratch--name) (buffer-name))
          (smart-scratch--switch-back))
