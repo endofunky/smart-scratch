@@ -121,6 +121,4 @@
 
 (provide 'smart-scratch)
 
-(provide 'smart-scratch)
-
 ;;; smart-scratch.el ends here
