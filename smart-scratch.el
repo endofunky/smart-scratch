@@ -56,6 +56,7 @@
     (shell-mode . sh-mode)
     (inferior-python-mode . python-mode)
     (inferior-lisp-mode . lisp-mode)
+    (cider-repl-mode . clojure-mode)
     (sql-interactive-mode . sql-mode)))
 
 (defvar smart-scratch--prev-buffers (make-hash-table :weakness 'value))
