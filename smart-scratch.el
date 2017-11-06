@@ -39,12 +39,12 @@
   :prefix "smart-scratch-"
   :group 'editing)
 
-(defcustom smart-scratch-buffer-prefix "scratch-"
+(defcustom smart-scratch-buffer-prefix "*scratch-"
   "Scratch buffer name prefix."
   :type '(string)
   :group 'diff)
 
-(defcustom smart-scratch-buffer-suffix ""
+(defcustom smart-scratch-buffer-suffix "*"
   "Scratch buffer name suffix."
   :type '(string)
   :group 'diff)
@@ -86,11 +86,9 @@
       "*scratch*"
     (let ((name (replace-regexp-in-string "-mode\\'" ""
                                           (smart-scratch--major-mode-name))))
-      (concat "*"
-              smart-scratch-buffer-prefix
+      (concat smart-scratch-buffer-prefix
               name
-              smart-scratch-buffer-suffix
-              "*"))))
+              smart-scratch-buffer-suffix))))
 
 (defun smart-scratch--switch-to ()
   "Switch to the scratch buffer for the given major mode."
