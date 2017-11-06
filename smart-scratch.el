@@ -110,6 +110,7 @@
          (prev-buffer (gethash mode-str smart-scratch--prev-buffers)))
     (if (buffer-live-p prev-buffer)
         (switch-to-buffer prev-buffer)
+      (remhash mode-str smart-scratch--prev-buffers)
       (message "No buffer to switch back to."))
     (remhash mode-str smart-scratch--prev-buffers)))
 
