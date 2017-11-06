@@ -64,9 +64,8 @@
 
 (defun smart-scratch--major-mode (&optional buffer)
   "Return the infered `major-mode' for the given or current buffer."
-  (let ((mode (buffer-local-value 'major-mode (if buffer
-                                                  buffer
-                                                (current-buffer)))))
+  (let ((mode (buffer-local-value 'major-mode (or buffer
+                                                  (current-buffer)))))
     (or (cdr (assoc mode smart-scratch--modes))
         mode)))
 
