@@ -5,7 +5,7 @@
 ;; Author: Tobias Svensson <tob@tobiassvensson.co.uk>
 ;; URL: https://github.com/endofunky/smart-scratch
 ;; Version: 1.0.0
-;; Keywords: editing
+;; Keywords: convenience
 ;; Package-Requires: ((cl-lib "0.5"))
 
 ;; This file is NOT part of GNU Emacs.
