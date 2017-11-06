@@ -53,6 +53,7 @@
   '((emacs-lisp-mode . lisp-interaction-mode)
     (inferior-emacs-lisp-mode . lisp-interaction-mode)
     (inf-ruby-mode . ruby-mode)
+    (shell-mode . sh-mode)
     (sql-interactive-mode . sql-mode)))
 
 (defvar smart-scratch--prev-buffers (make-hash-table :weakness 'value))
