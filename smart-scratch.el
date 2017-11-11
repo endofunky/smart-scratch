@@ -84,7 +84,7 @@
 
 (defun smart-scratch--major-mode-name ()
   "Return the name of the major mode for the current buffer."
-  (format "%s" (smart-scratch--major-mode)))
+  (symbol-name (smart-scratch--major-mode)))
 
 (defun smart-scratch--name ()
   "Return the scratch buffer name for the current `major-mode'."
